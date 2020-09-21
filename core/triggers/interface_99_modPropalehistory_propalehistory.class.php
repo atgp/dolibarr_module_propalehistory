@@ -33,10 +33,10 @@
 /**
  * Trigger class
  */
-class InterfacePropalehistory
+class InterfacePropalehistory extends DolibarrTriggers
 {
 
-    private $db;
+    protected $db;
 
     /**
      * Constructor
@@ -141,17 +141,17 @@ class InterfacePropalehistory
 			dol_include_once("/propalehistory/config.php");
 			dol_include_once("/comm/propal/class/propal.class.php");
 			dol_include_once('/propalehistory/class/propaleHist.class.php');
-	
+
 			if(isset($_REQUEST['mesg'])) {
-			
+
 				setEventMessage($_REQUEST['mesg']);
-	
+
 			}
-			
+
 			$ATMdb = new TPDOdb;
-			
+
 			TPropaleHist::archiverPropale($ATMdb, $object);
-			
+
             dol_syslog(
                 "Trigger '" . $this->name . "' for action '$action' launched by " . __FILE__ . ". id=" . $object->id
             );
