@@ -23,7 +23,7 @@ class ActionsPropalehistory
 				$ATMdb = new TPDOdb;
 
 
-		    	$actionATM = GETPOST('actionATM');
+		    	$actionATM = GETPOST('actionATM', 'none');
 		    	$url=DOL_URL_ROOT.'/comm/propal.php';
                 if ((float) DOL_VERSION >= 4.0) {
                     $url=DOL_URL_ROOT.'/comm/propal/card.php';
