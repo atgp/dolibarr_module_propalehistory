@@ -53,7 +53,7 @@ if (preg_match('/set_(.*)/',$action,$reg))
 		setEventMessages($mesg, array(), 'errors');
 		$_POST['PROPALEHISTORY_AUTO_ARCHIVE'] = 0;
 	}
-	if (dolibarr_set_const($db, $code, GETPOST($code), 'chaine', 0, '', $conf->entity) > 0)
+	if (dolibarr_set_const($db, $code, GETPOST($code, 'none'), 'chaine', 0, '', $conf->entity) > 0)
 	{
 		if ($code == 'PROPALEHISTORY_ARCHIVE_ON_MODIFY') {
 			dolibarr_set_const($db, 'PROPALEHISTORY_AUTO_ARCHIVE', 0, 'chaine', 0, '', $conf->entity);
@@ -66,7 +66,7 @@ if (preg_match('/set_(.*)/',$action,$reg))
 		dol_print_error($db);
 	}
 }
-	
+
 if (preg_match('/del_(.*)/',$action,$reg))
 {
 	$code=$reg[1];
@@ -113,7 +113,7 @@ if($ok) {
 	print '<td>'.$langs->trans("Parameters").'</td>'."\n";
 	print '<td align="center" width="20">&nbsp;</td>';
 	print '<td align="center" width="100">'.$langs->trans("Value").'</td>'."\n";
-	
+
 	// Display convert button on proposal
 	$var=!$var;
 	print '<tr '.$bc[$var].'>';
@@ -140,7 +140,7 @@ if($ok) {
 	print '<input type="submit" class="button" value="'.$langs->trans("Modify").'">';
 	print '</form>';
 	print '</td></tr>';
-	
+
 	$var=!$var;
 	print '<tr '.$bc[$var].'>';
 	print '<td>'.$langs->trans("PROPALEHISTORY_HIDE_VERSION_ON_TABS").'</td>';
@@ -166,7 +166,7 @@ if($ok) {
 	print '<input type="submit" class="button" value="'.$langs->trans("Modify").'">';
 	print '</form>';
 	print '</td></tr>';
-	
+
 	$var=!$var;
 	print '<tr '.$bc[$var].'>';
 	print '<td>'.$langs->trans("PROPALEHISTORY_ARCHIVE_ON_MODIFY").'</td>';
@@ -179,8 +179,8 @@ if($ok) {
 	print '<input type="submit" class="button" value="'.$langs->trans("Modify").'">';
 	print '</form>';
 	print '</td></tr>';
-	
-	
+
+
 	$var=!$var;
 	print '<tr '.$bc[$var].'>';
 	print '<td>'.$langs->trans("PROPALEHISTORY_USE_COMPRESS_ARCHIVE").'</td>';
@@ -193,8 +193,8 @@ if($ok) {
 	print '<input type="submit" class="button" value="'.$langs->trans("Modify").'">';
 	print '</form>';
 	print '</td></tr>';
-	
-	
+
+
 } else {
 	print $langs->trans('ModuleNeedProposalOrOrderModule');
 }
