@@ -227,20 +227,11 @@ class ActionsPropalehistory
 			$version = new TPropaleHist;
 			$version->load($ATMdb, $_REQUEST['idVersion']);
 			$version->delete($ATMdb);
-
-			?>
-				<script language="javascript">
-					document.location.href="<?php echo $_SERVER['PHP_SELF'] ?>?id=<?php echo $_REQUEST['id']?>&mesg=<?php echo $langs->transnoentities('HistoryVersionSuccessfullDelete') ?>";
-				</script>
-			<?php
-
-            /* TODO J'ai essayé de rajouter un exit ici, ce qui serait complètement logique, mais ça a tout cassé...
-             * Visiblement, le module est conçu pour que le script continue de s'exécuter. Dont acte, mais entre ça, les
-             * redirections en JS plutôt que via header(), et les messages de retour utilisateur passés en paramètre
-             * lors de la redirection, on est dans une méthodologie bien dégueulasse, il y a donc du refaisage à
-             * entreprendre à mon sens - MdLL, 07/04/2020
-             */
+			$url = $_SERVER['PHP_SELF'].'?id='.$_REQUEST['id'].'&mesg='.$langs->transnoentities('HistoryVersionSuccessfullDelete');
+			header('location:'.$url);
+			exit;
 		}
+
 
 		return 0;
 	}
